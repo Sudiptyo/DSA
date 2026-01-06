@@ -1,9 +1,5 @@
 #include <stdio.h>
 
-void Display(const char *message, int a[], int n);
-void Heapify(int a[], int n, int i);
-void HeapSort(int a[], int n);
-
 void Display(const char *message, int a[], int n)
 {
     int i;
@@ -14,6 +10,15 @@ void Display(const char *message, int a[], int n)
     }
     printf("\n");
 }
+
+void Swap(int *a, int *b)
+{
+    int t;
+    t = *a;
+    *a = *b;
+    *b = t;
+}
+
 void Heapify(int a[], int n, int i)
 {
     int largest = i;   // Initialize largest as root
@@ -25,9 +30,7 @@ void Heapify(int a[], int n, int i)
         largest = r;  // If right child is larger than largest so far
     if (largest != i) // If largest is not root
     {
-        int t = a[i];
-        a[i] = a[largest];
-        a[largest] = t;
+        Swap(&a[i], &a[largest]); // Swap root and largest
         Heapify(a, n, largest);
     }
 }
@@ -40,9 +43,7 @@ void HeapSort(int a[], int n)
     }
     for (int i = n - 1; i >= 0; i--) // One by one extract an element from heap
     {
-        int temp = a[0];
-        a[0] = a[i];
-        a[i] = temp;
+        Swap(&a[0], &a[i]); // Move current root to end
         Heapify(a, i, 0);
     }
 }
