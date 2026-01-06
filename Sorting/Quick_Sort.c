@@ -35,9 +35,13 @@
 
 #include <stdio.h>
 
-void Display(const char *message, int a[], int n);
-int Partition(int A[], int low, int high);
-void QuickSort(int A[], int low, int high);
+void Swap(int *a, int *b)
+{
+    int t;
+    t = *a;
+    *a = *b;
+    *b = t;
+}
 
 void Display(const char *message, int a[], int n)
 {
@@ -59,26 +63,25 @@ int Partition(int A[], int low, int high)
 
     do
     {
-        while (A[i] <= pivot && i <= high) // Increment i until an element greater than pivot is found
+        while (i <= high && A[i] <= pivot) // Increment i until an element greater than pivot is found
         {
             i++;
         }
-        while (A[j] > pivot && j >= low) // Decrement j until an element less than or equal to pivot is found
+        while (j >= low && A[j] > pivot) // Decrement j until an element less than or equal to pivot is found
         {
             j--;
         }
         if (i < j) // Swap elements at i and j if i is still less than j
         {
-            t = A[i];
-            A[i] = A[j];
-            A[j] = t;
+            Swap(&A[i], &A[j]);
         }
     } while (i < j); // Continue until i is no longer less than j
 
     // Place pivot at correct position
-    t = A[low];
-    A[low] = A[j];
-    A[j] = t;
+    // t = A[low];
+    // A[low] = A[j];
+    // A[j] = t;
+    Swap(&A[low], &A[j]);
 
     return j;
 }
