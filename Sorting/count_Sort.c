@@ -27,10 +27,6 @@
 
 #include <stdio.h>
 
-void Display(const char *message, int a[], int n);
-int Max(int a[], int n);
-void CountSort(int a[], int n);
-
 void Display(const char *message, int a[], int n)
 {
     int i;

@@ -28,10 +28,6 @@
 
 #include <stdio.h>
 
-void UnsortedDisplay(int a[], int n);
-void SortedDisplay(int a[], int n);
-void InsertionSort(int a[], int n);
-
 void UnsortedDisplay(int a[], int n)
 {
     int i;
@@ -56,7 +52,7 @@ void SortedDisplay(int a[], int n)
 
 void InsertionSort(int a[], int n)
 {
-    int i, j, t, key;
+    int i, j, key;
     for (i = 1; i <= n - 1; i++) // PASSES
     {
         key = a[i]; // Element being inserted 

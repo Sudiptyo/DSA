@@ -42,11 +42,6 @@
 
 #include <stdio.h>
 
-void UnsortedDisplay(int a[], int n);
-void SortedDisplay(int a[], int n);
-void Merge(int a[], int low, int mid, int high);
-void MergeSort(int a[], int low, int high);
-
 void UnsortedDisplay(int a[], int n)
 {
     int i;

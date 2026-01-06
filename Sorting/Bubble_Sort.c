@@ -28,10 +28,6 @@
 
 #include <stdio.h>
 
-void UnsortedDisplay(int a[], int n);
-void SortedDisplay(int a[], int n);
-void BubbleSort(int a[], int n);
-
 void UnsortedDisplay(int a[], int n)
 {
     int i;

@@ -33,10 +33,6 @@
 
 #include <stdio.h>
 
-void UnsortedDisplay(int a[], int n);
-void SortedDisplay(int a[], int n);
-void SelectionSort(int a[], int n);
-
 void UnsortedDisplay(int a[], int n)
 {
     int i;
@@ -61,7 +57,7 @@ void SortedDisplay(int a[], int n)
 
 void SelectionSort(int a[], int n)
 {
-    int i, j, t, min_index;
+    int i, j, min_index, key;
     for (i = 0; i < n - 1; i++) // PASSES
     {
         min_index = i;
@@ -75,13 +71,31 @@ void SelectionSort(int a[], int n)
             }
         }
 
-        // swap only once per pass
-        if (min_index != i)
+        // Store the minimum element found in the unsorted part of the array.
+        // This value is saved because it will be overwritten during shifting.
+        key = a[min_index]; // store minimum element
+        // Instead of swapping the minimum element directly with a[i],
+        // we shift all elements between index i and min_index − 1
+        // one position to the right.
+        // This prevents changing the relative order of equal elements,
+        // which is why the algorithm becomes STABLE.
+        while(min_index > i) // SHIFT elements to right
         {
-            t = a[i];
-            a[i] = a[min_index];
-            a[min_index] = t;
+            // Move the element just before min_index
+            // one position to the right.
+            // This creates an empty position at index i step by step.
+            a[min_index] = a[min_index - 1]; // shift element to right by 1 position using min_index
+
+            // Decrease min_index so that shifting continues
+            // until we reach the correct insertion position i.
+            min_index--; // move index left
         }
+
+        // After all elements have been shifted,
+        // place the stored minimum element into index i.
+        // Now the smallest element is correctly placed,
+        // and the order of equal elements is preserved.
+        a[i] = key; // place minimum element at its correct position
     }
     SortedDisplay(a, n);
 }
